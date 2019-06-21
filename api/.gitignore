@@ -1,0 +1,11 @@
+followup
+
+# Editor directories and files
+.idea
+.vscode
+.gomon
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
