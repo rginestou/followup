@@ -26,7 +26,11 @@ func main() {
 	// Authorized group
 	r := e.Group("/users")
 	r.Use(jwtAuth, extractUser)
-	r.GET("", c.Restricted)
+	r.GET("/me", c.GetUser)
+	r.GET("/:id", c.GetUser)
+	r.GET("", c.GetUsers)
+	r.POST("", c.AddUser)
+	r.DELETE("", c.DeleteUser)
 
 	e.Logger.Fatal(e.Start(":3000"))
 }

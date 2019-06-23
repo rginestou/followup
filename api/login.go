@@ -1,6 +1,8 @@
 package main
 
 import (
+	"followup/models"
+	"followup/utils"
 	"net/http"
 	"time"
 
@@ -12,8 +14,15 @@ func login(c echo.Context) error {
 	username := c.FormValue("username")
 	password := c.FormValue("password")
 
-	// Throws unauthorized error
-	if username != "john" && password != "snow" {
+	// Fetch user
+	user, err := models.GetUserByUsername(username)
+	if err != nil {
+		return echo.ErrUnauthorized
+	}
+
+	// Check password
+	err = utils.CompareWithHash(user.Password, password)
+	if err != nil {
 		return echo.ErrUnauthorized
 	}
 
@@ -22,8 +31,7 @@ func login(c echo.Context) error {
 
 	// Set claims
 	claims := token.Claims.(jwt.MapClaims)
-	claims["name"] = "Jon Snow"
-	claims["admin"] = true
+	claims["user_id"] = user.ID
 	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
 
 	// Generate encoded token and send it as response.
