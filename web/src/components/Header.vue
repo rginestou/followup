@@ -12,7 +12,7 @@
       <ul class="navbar-nav navbar-nav-right">
         <!-- User -->
         <li class="nav-item nav-profile dropdown">
-          <div class="nav-link" id="profileDropdown">
+          <div class="nav-link">
             <div class="nav-profile-img">
               <img src="images/faces/face1.jpg" alt="image">
               <span class="availability-status online"></span>
@@ -22,9 +22,15 @@
             </div>
           </div>
         </li>
+        <!-- Admin panel -->
+        <li class="nav-item d-none d-lg-block full-screen-link">
+          <a class="nav-link" href="#">
+            <i class="mdi mdi-account-multiple" id="admin-button"></i>
+          </a>
+        </li>
         <!-- Fullscreen -->
         <li class="nav-item d-none d-lg-block full-screen-link">
-          <a class="nav-link">
+          <a class="nav-link" href="#">
             <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
           </a>
         </li>
@@ -41,9 +47,6 @@
 
 <script>
 export default {
-	name: "HelloWorld",
-	props: {
-		msg: String,
-	},
+	name: "Header",
 }
 </script>

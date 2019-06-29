@@ -6,17 +6,17 @@
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left p-5">
               <div class="brand-logo">
-                <img src="images/FollowUp.png">
+                <img src="images/logo.png">
               </div>
-              <h4>Hello! let's get started</h4>
-              <h6 class="font-weight-light">Sign in to continue.</h6>
+              <h4>Bienvenue !</h4>
+              <h6 class="font-weight-light">Connectez-vous pour continuer.</h6>
               <form class="pt-3">
                 <div class="form-group">
                   <input
                     type="email"
                     class="form-control form-control-lg"
                     id="exampleInputEmail1"
-                    placeholder="Username"
+                    placeholder="Nom d'utilisateur"
                   >
                 </div>
                 <div class="form-group">
@@ -24,24 +24,15 @@
                     type="password"
                     class="form-control form-control-lg"
                     id="exampleInputPassword1"
-                    placeholder="Password"
+                    placeholder="Mot de passe"
                   >
                 </div>
                 <div class="mt-3">
                   <a
                     class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn"
                     href="index.html"
-                  >SIGN IN</a>
+                  >SE CONNECTER</a>
                 </div>
-                <!-- <div class="my-2 d-flex justify-content-between align-items-center">
-                  <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      Keep me signed in
-                    </label>
-                  </div>
-                  <a href="#" class="auth-link text-black">Forgot password?</a>
-                </div> -->
               </form>
             </div>
           </div>

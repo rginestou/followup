@@ -11,64 +11,52 @@
             placeholder="Search"
             aria-label="Username"
             aria-describedby="basic-addon1"
-          >
+          />
         </div>
       </div>
 
       <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Title</th>
-              <th>Details</th>
-              <th>Last Update</th>
-            </tr>
-          </thead>
+        <table class="table table-hover">
+          <colgroup>
+            <col span="1" style="width: 20px;" />
+          </colgroup>
+
           <tbody>
             <tr>
               <td>
-                <img src="images/faces/face1.jpg" class="mr-2" alt="image">
-                David Grey
+                <img src="images/faces/face1.jpg" class="mr-2" alt="image" />
               </td>
-              <td>Fund is not recieved</td>
               <td>
-                <label class="badge badge-gradient-success">DONE</label>
+                <p class="mb-0">David Grey</p>
+                <span class="text-muted">CEO</span>
               </td>
-              <td>Dec 5, 2017</td>
             </tr>
             <tr>
               <td>
-                <img src="images/faces/face2.jpg" class="mr-2" alt="image">
-                Stella Johnson
+                <img src="images/faces/face2.jpg" class="mr-2" alt="image" />
               </td>
-              <td>High loading time</td>
               <td>
-                <label class="badge badge-gradient-warning">PROGRESS</label>
+                <p class="mb-0">David Grey</p>
+                <span class="text-muted">CEO</span>
               </td>
-              <td>Dec 12, 2017</td>
             </tr>
             <tr>
               <td>
-                <img src="images/faces/face3.jpg" class="mr-2" alt="image">
-                Marina Michel
+                <img src="images/faces/face3.jpg" class="mr-2" alt="image" />
               </td>
-              <td>Website down for one week</td>
               <td>
-                <label class="badge badge-gradient-info">ON HOLD</label>
+                <p class="mb-0">David Grey</p>
+                <span class="text-muted">CEO</span>
               </td>
-              <td>Dec 16, 2017</td>
             </tr>
             <tr>
               <td>
-                <img src="images/faces/face4.jpg" class="mr-2" alt="image">
-                John Doe
+                <img src="images/faces/face4.jpg" class="mr-2" alt="image" />
               </td>
-              <td>Loosing control on server</td>
               <td>
-                <label class="badge badge-gradient-danger">REJECTED</label>
+                <p class="mb-0">David Grey</p>
+                <span class="text-muted">CEO</span>
               </td>
-              <td>Dec 3, 2017</td>
             </tr>
           </tbody>
         </table>

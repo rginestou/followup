@@ -9156,7 +9156,7 @@ pre code {
   padding-left: 20px;
   margin-right: auto;
   margin-left: auto;
-  background: #fbf9fb;
+  background: #f4f3f7;
 }
 
 .row {
@@ -9980,6 +9980,7 @@ pre code {
 .table-hover tbody tr:hover {
   color: #212529;
   background-color: #f2edf3;
+  cursor: pointer;
 }
 
 .table-primary, .table-primary>th, .table-primary>td {
@@ -10213,6 +10214,15 @@ pre code {
 
 .table-responsive>.table-bordered {
   border: 0;
+}
+
+.invisible-form {
+  border: 0px solid #ced4da;
+}
+
+.invisible-form::placeholder {
+  color: #c9c8c8;
+  opacity: 1;
 }
 
 .form-control {
@@ -10619,6 +10629,10 @@ textarea.form-control {
 
 .form-inline .form-check {
   width: 100%;
+}
+
+:focus {
+  outline: none !important;
 }
 
 @media (min-width: 576px) {
@@ -11720,6 +11734,10 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   background-color: #e9ecef;
   border: 1px solid #ced4da;
   border-radius: 2px;
+}
+
+.input-light {
+  border: 0px solid #fff;
 }
 
 .input-group-text input[type="radio"], .input-group-text input[type="checkbox"] {
@@ -19398,8 +19416,8 @@ code {
 }
 
 .btn.btn-icon {
-  width: 42px;
-  height: 42px;
+  width: 34px;
+  height: 34px;
   padding: 0;
 }
 
