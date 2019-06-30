@@ -7,10 +7,10 @@
         <div class="content-wrapper">
           <div class="row">
             <div class="col-md-4 grid-margin">
-              <ContactList></ContactList>
+              <ContactList @pickContact="pickContact"></ContactList>
             </div>
             <div class="col-md-8 grid-margin">
-              <Contact></Contact>
+              <Contact :contact="pickedContact"></Contact>
             </div>
           </div>
         </div>
@@ -28,7 +28,18 @@ import ContactList from "./ContactList"
 import Contact from "./Contact/Contact"
 
 export default {
-	name: "Main",
-	components: { Header, Footer, ContactList, Contact },
+  name: "Main",
+  components: { Header, Footer, ContactList, Contact },
+  data() {
+    return {
+      pickedContact: null,
+    }
+  },
+  mounted() {},
+  methods: {
+    pickContact(user) {
+      this.pickedContact = user
+    },
+  },
 }
 </script>

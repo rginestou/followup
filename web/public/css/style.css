@@ -12229,6 +12229,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  cursor: pointer;
 }
 
 .nav-link:hover, .nav-link:focus {

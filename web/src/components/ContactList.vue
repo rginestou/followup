@@ -1,7 +1,12 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title">Contacts</h4>
+      <h3 class="mb-4">
+        Contacts
+        <button type="button" class="float-right btn btn-sm btn-outline-info btn-fw">
+          <i class="mdi mdi-plus"></i> Ajouter
+        </button>
+      </h3>
 
       <div class="form-group">
         <div class="input-group">
@@ -22,40 +27,13 @@
           </colgroup>
 
           <tbody>
-            <tr>
+            <tr v-for="(contact, c) in contacts" v-bind:key="contact.id" @click="pickContact(c)">
               <td>
                 <img src="images/faces/face1.jpg" class="mr-2" alt="image" />
               </td>
               <td>
-                <p class="mb-0">David Grey</p>
-                <span class="text-muted">CEO</span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img src="images/faces/face2.jpg" class="mr-2" alt="image" />
-              </td>
-              <td>
-                <p class="mb-0">David Grey</p>
-                <span class="text-muted">CEO</span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img src="images/faces/face3.jpg" class="mr-2" alt="image" />
-              </td>
-              <td>
-                <p class="mb-0">David Grey</p>
-                <span class="text-muted">CEO</span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img src="images/faces/face4.jpg" class="mr-2" alt="image" />
-              </td>
-              <td>
-                <p class="mb-0">David Grey</p>
-                <span class="text-muted">CEO</span>
+                <p class="mb-0">{{contact.name}}</p>
+                <span class="text-muted">{{contact.position}}</span>
               </td>
             </tr>
           </tbody>
@@ -64,3 +42,24 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      contacts: [],
+    }
+  },
+  mounted() {
+    this.contacts = [
+      { name: "John Doe", position: "CEO" },
+      { name: "Alice Doe", position: "CTO" },
+    ]
+  },
+  methods: {
+    pickContact(i) {
+      this.$emit("pickContact", this.contacts[i])
+    },
+  },
+}
+</script>

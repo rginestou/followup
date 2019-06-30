@@ -6,10 +6,10 @@
       </div>
 
       <h3 class="text-center mt-3 mb-1">
-        <input class="text-center invisible-form" placeholder="John Doe" />
+        <input v-model="contact.name" class="text-center invisible-form" placeholder="John Doe" />
       </h3>
       <p class="text-center text-muted mb-4">
-        <input class="text-center invisible-form" placeholder="CEO" />
+        <input v-model="contact.position" class="text-center invisible-form" placeholder="CEO" />
       </p>
 
       <div class="row">
@@ -24,9 +24,19 @@
         <div class="col-md-6">
           <address>
             <p class="font-weight-bold">E-mail</p>
-            <input type="text" class="invisible-form" placeholder="john.doe@example.com" />
+            <input
+              v-model="contact.email"
+              type="text"
+              class="invisible-form"
+              placeholder="john.doe@example.com"
+            />
             <p class="font-weight-bold">Web Address</p>
-            <input type="text" class="invisible-form" placeholder="www.john-doe.com" />
+            <input
+              v-model="contact.website"
+              type="text"
+              class="invisible-form"
+              placeholder="www.john-doe.com"
+            />
           </address>
         </div>
       </div>
@@ -37,46 +47,29 @@
         </button>
       </div>
 
-      <div class="table-responsive">
-        <table class="simple-table">
-          <tr>
-            <td>
-              <div class="mb-2 font-weight-bold">
-                <input
-                  class="input-light"
-                  type="date"
-                  :value="myDate && myDate.toISOString().split('T')[0]"
-                  @input="myDate = $event.target.valueAsDate"
-                />
-              </div>
-              <div style="width:100px">
-                <button type="button" class="mx-1 btn btn-inverse-info btn-rounded btn-icon">
-                  <i class="mdi mdi-home-mdi mdi-pencil"></i>
-                </button>
-                <button type="button" class="mx-1 btn btn-inverse-danger btn-rounded btn-icon">
-                  <i class="mdi mdi-delete"></i>
-                </button>
-              </div>
-            </td>
-            <td>
-              <Editor></Editor>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p class="font-weight-bold">10/05/2019</p>
-              <div style="width:100px">
-                <button type="button" class="mx-1 btn btn-inverse-info btn-rounded btn-icon">
-                  <i class="mdi mdi-home-mdi mdi-pencil"></i>
-                </button>
-                <button type="button" class="mx-1 btn btn-inverse-danger btn-rounded btn-icon">
-                  <i class="mdi mdi-delete"></i>
-                </button>
-              </div>
-            </td>
-            <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley not only five centuries,</td>
-          </tr>
-        </table>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="mb-2 font-weight-bold">
+            <input
+              class="input-light"
+              type="date"
+              :value="myDate && myDate.toISOString().split('T')[0]"
+              @input="myDate = $event.target.valueAsDate"
+            />
+          </div>
+          <div style="width:100px">
+            <button type="button" class="mx-1 btn btn-inverse-info btn-rounded btn-icon">
+              <i class="mdi mdi-home-mdi mdi-pencil"></i>
+            </button>
+            <button type="button" class="mx-1 btn btn-inverse-danger btn-rounded btn-icon">
+              <i class="mdi mdi-delete"></i>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-9">
+          {{contact}}
+          <Editor></Editor>
+        </div>
       </div>
     </div>
   </div>
@@ -86,12 +79,21 @@
 import Editor from "./Editor"
 
 export default {
+  props: ["contact"],
   name: "Main",
   components: { Editor },
   data() {
     return {
       myDate: new Date(),
     }
+  },
+  watch: {
+    contact: {
+      handler(val) {
+        console.log(val)
+      },
+      deep: true,
+    },
   },
 }
 </script>

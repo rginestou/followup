@@ -1,7 +1,7 @@
 
 <template>
   <div class="editor">
-    <editor-content class="editor__content" style="height:4em" :editor="editor" />
+    <editor-content class="editor__content" :editor="editor" />
   </div>
 </template>
 
@@ -46,7 +46,7 @@ export default {
         ],
         content: `Contenu...`,
         onUpdate: ({ getHTML }) => {
-          // const newContent = this.getHTML()
+          const newContent = getHTML()
         },
       }),
     }
