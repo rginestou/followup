@@ -10,18 +10,26 @@ import (
 	"github.com/labstack/echo"
 )
 
+type credentials struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
 func login(c echo.Context) error {
-	username := c.FormValue("username")
-	password := c.FormValue("password")
+	var body credentials
+	err := c.Bind(&body)
+	if err != nil {
+		return echo.ErrBadRequest
+	}
 
 	// Fetch user
-	user, err := models.GetUserByUsername(username)
+	user, err := models.GetUserByUsername(body.Username)
 	if err != nil {
 		return echo.ErrUnauthorized
 	}
 
 	// Check password
-	err = utils.CompareWithHash(user.Password, password)
+	err = utils.CompareWithHash(user.Password, body.Password)
 	if err != nil {
 		return echo.ErrUnauthorized
 	}
@@ -40,7 +48,8 @@ func login(c echo.Context) error {
 		return err
 	}
 
-	return c.JSON(http.StatusOK, map[string]string{
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"user":  user,
 		"token": t,
 	})
 }

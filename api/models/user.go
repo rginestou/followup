@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"followup/utils"
 
 	"gopkg.in/mgo.v2/bson"
@@ -8,10 +9,17 @@ import (
 
 // User model
 type User struct {
-	ID       bson.ObjectId `json:"id" bson:"_id,omitempty"`
-	Username string        `json:"username" bson:"username"`
-	Email    string        `json:"email" bson:"email"`
-	Password string        `json:"-" bson:"password"`
+	ID bson.ObjectId `json:"id" bson:"_id,omitempty"`
+
+	Name     string `json:"name" bson:"name"`
+	Username string `json:"username" bson:"username"`
+	Password string `json:"-" bson:"password"`
+}
+
+// GetUsersCount returns the total number of users
+func GetUsersCount() (n int) {
+	n, _ = userCol.Count()
+	return
 }
 
 // GetUsers returns all users
@@ -22,7 +30,7 @@ func GetUsers() (users []User, err error) {
 
 // GetUserByID returns one user by their ID
 func GetUserByID(id bson.ObjectId) (user *User, err error) {
-	err = userCol.Find(bson.M{}).One(&user)
+	err = userCol.FindId(id).One(&user)
 	return
 }
 
@@ -35,6 +43,12 @@ func GetUserByUsername(username string) (user *User, err error) {
 // AddUser inserts a new user in the database
 func AddUser(user User) (id bson.ObjectId, err error) {
 	id = bson.NewObjectId()
+	_, err = GetUserByUsername(user.Username)
+	if err == nil {
+		err = fmt.Errorf("Username already taken")
+		return
+	}
+
 	user.ID = id
 	user.Password, err = utils.GenerateHash(user.Password)
 	if err != nil {

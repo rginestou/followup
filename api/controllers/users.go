@@ -23,8 +23,8 @@ func GetUser(c echo.Context) error {
 	if !bson.IsObjectIdHex(c.Param("id")) {
 		return echo.ErrBadRequest
 	}
-
 	id := bson.ObjectIdHex(c.Param("id"))
+
 	user, err := models.GetUserByID(id)
 	if err != nil {
 		return echo.ErrNotFound
@@ -46,26 +46,56 @@ func GetMe(c echo.Context) error {
 
 // AddUser inserts a new user in the database
 func AddUser(c echo.Context) error {
-	var user models.User
-	err := c.Bind(&user)
+	var body models.User
+	err := c.Bind(&body)
 	if err != nil {
 		return echo.ErrBadRequest
 	}
 
-	id, err := models.AddUser(user)
+	id, err := models.AddUser(body)
+	if err != nil {
+		return echo.ErrBadRequest
+	}
+
+	user, _ := models.GetUserByID(id)
+
+	return c.JSON(http.StatusOK, user)
+}
+
+// UpdateUser updates a user by their ID
+func UpdateUser(c echo.Context) error {
+	if !bson.IsObjectIdHex(c.Param("id")) {
+		return echo.ErrBadRequest
+	}
+	id := bson.ObjectIdHex(c.Param("id"))
+
+	var body models.User
+	err := c.Bind(&body)
+	if err != nil {
+		return echo.ErrBadRequest
+	}
+
+	err = models.UpdateUser(id, body)
+	if err != nil {
+		return echo.ErrBadRequest
+	}
+
+	user, _ := models.GetUserByID(id)
+
+	return c.JSON(http.StatusOK, user)
+}
+
+// DeleteUser deletes a user by their ID
+func DeleteUser(c echo.Context) error {
+	if !bson.IsObjectIdHex(c.Param("id")) {
+		return echo.ErrBadRequest
+	}
+	id := bson.ObjectIdHex(c.Param("id"))
+
+	err := models.DeleteUser(id)
 	if err != nil {
 		return echo.ErrNotFound
 	}
 
-	iuser, _ := models.GetUserByID(id)
-
-	return c.JSON(http.StatusOK, iuser)
-}
-
-func UpdateUser(c echo.Context) error {
-	return nil
-}
-
-func DeleteUser(c echo.Context) error {
-	return nil
+	return c.NoContent(http.StatusOK)
 }
