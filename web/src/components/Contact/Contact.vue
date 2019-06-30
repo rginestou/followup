@@ -86,12 +86,12 @@
 import Editor from "./Editor"
 
 export default {
-	name: "Main",
-	components: { Editor },
-	data() {
-		return {
-			myDate: new Date(),
-		}
-	},
+  name: "Main",
+  components: { Editor },
+  data() {
+    return {
+      myDate: new Date(),
+    }
+  },
 }
 </script>

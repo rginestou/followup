@@ -1,44 +1,35 @@
 const axios = require('axios')
 
 module.exports = ctx => ({
-	login(identifier, password) {
-		return axios.post(`${process.env.API_URL}/auth/local`, {
-			identifier, password,
-		})
-		.then(res => {
-			localStorage.setItem('token', res.data.jwt)
-			localStorage.setItem('user', global.JSON.stringify(res.data.user))
-			return res.data.user
-		})
-	},
+  login(username, password) {
+    console.log(username, password)
 
-	getUser() {
-		const str = localStorage.getItem('user')
-		if (str)
-			return JSON.parse(str)
+    return axios.post(`${process.env.VUE_APP_API_URL}/login`, {
+      username, password,
+    })
+      .then(res => {
+        console.log(res)
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('user', global.JSON.stringify(res.data.user))
+        return res.data.user
+      })
+      .catch(err => console.log(err))
+  },
 
-		return {}
-	},
+  getUser() {
+    const str = localStorage.getItem('user')
+    if (str)
+      return JSON.parse(str)
 
-	forgetPassword(email) {
-		return axios.post(`${process.env.API_URL}/auth/forgot-password`, {
-			email,
-			url: `${process.env.FRONT_URL}/forgot-password`,
-		})
-	},
+    return {}
+  },
 
-	resetPassword(code, password, passwordConfirmation) {
-		return axios.post(`${process.env.API_URL}/auth/reset-password`, {
-			code, password, passwordConfirmation,
-		})
-	},
+  checkLogin() {
+    return localStorage.getItem('token') != null
+  },
 
-	checkLogin() {
-		return localStorage.getItem('token') != null
-	},
-
-	logout() {
-		localStorage.removeItem('token')
-		localStorage.removeItem('user')
-	},
+  logout() {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+  },
 })

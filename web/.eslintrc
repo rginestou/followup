@@ -8,13 +8,8 @@
 			"error",
 			"never"
 		],
-		"no-tabs": "off",
 		"indent": [
-			2,
-			"tab",
-			{
-				"MemberExpression": 0
-			}
+			"error", 2
 		],
 		"space-before-function-paren": [
 			"error",
